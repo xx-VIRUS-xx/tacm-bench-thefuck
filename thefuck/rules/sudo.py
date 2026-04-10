@@ -29,7 +29,7 @@ patterns = ['permission denied',
 
 
 def match(command):
-    if command.script_parts and '&&' not in command.script_parts and command.script_parts[0] == 'sudo':
+    if command.script_parts and command.script_parts[0] == 'sudo':
         return False
 
     for pattern in patterns:
