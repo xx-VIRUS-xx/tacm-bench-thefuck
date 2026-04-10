@@ -10,4 +10,4 @@ def match(command):
 
 @sudo_support
 def get_new_command(command):
-    return re.sub('\\bmkdir (.*)', 'mkdir -p \\1', command.script)
+    return re.sub(r'\bmkdir\b', 'mkdir -p', command.script)
