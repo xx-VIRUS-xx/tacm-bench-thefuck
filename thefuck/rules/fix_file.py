@@ -67,7 +67,7 @@ def get_new_command(command):
 
     # Note: there does not seem to be a standard for columns, so they are just
     # ignored by default
-    if settings.fixcolcmd and 'col' in m.groupdict():
+    if settings.fixcolcmd and m.groupdict().get('col'):
         editor_call = settings.fixcolcmd.format(editor=os.environ['EDITOR'],
                                                 file=m.group('file'),
                                                 line=m.group('line'),

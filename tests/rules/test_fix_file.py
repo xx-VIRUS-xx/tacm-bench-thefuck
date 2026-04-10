@@ -205,6 +205,10 @@ def test_get_new_command(mocker, monkeypatch, test):
     mocker.patch('os.path.isfile', return_value=True)
     monkeypatch.setenv('EDITOR', 'dummy_editor')
 
+    cmd = Command(test.script, test.output)
+    assert get_new_command(cmd) == u'dummy_editor {} +{} && {}'.format(
+        test.file, test.line, test.script)
+
 
 @pytest.mark.parametrize('test', tests)
 @pytest.mark.usefixtures('no_memoize')
