@@ -7,7 +7,7 @@ from thefuck.shells import shell
 def _is_bad_zip(file):
     try:
         with zipfile.ZipFile(file, 'r') as archive:
-            return len(archive.namelist()) > 1
+            return len({n.split('/')[0] for n in archive.namelist()}) > 1
     except Exception:
         return False
 
