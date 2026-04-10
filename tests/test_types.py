@@ -8,7 +8,14 @@ from tests.utils import CorrectedCommand, Rule
 from thefuck import const
 from thefuck.exceptions import EmptyCommand
 from thefuck.system import Path
-from thefuck.types import Command
+from thefuck.types import Command, Settings
+
+
+def test_update_settings():
+    settings = Settings({'key': 'val'})
+    new_settings = settings.update(key='new-val')
+    assert new_settings.key == 'new-val'
+    assert settings.key == 'val'
 
 
 class TestCorrectedCommand(object):

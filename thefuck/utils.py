@@ -87,6 +87,13 @@ def default_settings(params):
     return decorator(_default_settings)
 
 
+def wrap_settings(params):
+    """Wraps function to update settings with new values from `params`."""
+    def _wrap_settings(fn, command, settings):
+        return fn(command, settings.update(**params))
+    return decorator(_wrap_settings)
+
+
 def get_closest(word, possibilities, cutoff=0.6, fallback_to_first=True):
     """Returns closest match or just first from possibilities."""
     possibilities = list(possibilities)
