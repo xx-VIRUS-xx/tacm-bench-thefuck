@@ -3,7 +3,7 @@ from thefuck.utils import for_app
 
 @for_app('ls')
 def match(command):
-    return command.script_parts and 'ls -' not in command.script
+    return command.script_parts and command.script_parts[0] == 'ls' and 'ls -' not in command.script
 
 
 def get_new_command(command):
