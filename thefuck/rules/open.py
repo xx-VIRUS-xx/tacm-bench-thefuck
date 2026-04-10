@@ -33,7 +33,8 @@ def match(command):
 def get_new_command(command):
     output = command.output.strip()
     if is_arg_url(command):
-        yield command.script.replace('open ', 'open http://')
+        cmd_parts = command.script.split(' ', 1)
+        yield cmd_parts[0] + ' http://' + cmd_parts[1]
     elif output.startswith('The file ') and output.endswith(' does not exist.'):
         arg = command.script.split(' ', 1)[1]
         for option in ['touch', 'mkdir']:
