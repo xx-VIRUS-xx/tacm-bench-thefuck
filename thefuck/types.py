@@ -9,6 +9,17 @@ from .utils import get_alias, format_raw_script
 from .output_readers import get_output
 
 
+class Settings(dict):
+    def __getattr__(self, item):
+        return self.get(item)
+
+    def update(self, **kwargs):
+        """Returns new settings with new values from `kwargs`."""
+        conf = dict(self)
+        conf.update(kwargs)
+        return Settings(conf)
+
+
 class Command(object):
     """Command that should be fixed."""
 
